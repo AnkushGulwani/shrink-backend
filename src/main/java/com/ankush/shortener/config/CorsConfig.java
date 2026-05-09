@@ -17,7 +17,8 @@ public class CorsConfig {
         config.setAllowedOrigins(List.of(
             "http://localhost:5173",
             "http://localhost:4173",
-            "https://shrink-frontend.vercel.app"
+            "https://shrink-frontend.vercel.app",
+            "https://shrink-chi.vercel.app"
         ));
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(List.of("*"));
