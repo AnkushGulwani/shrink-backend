@@ -4,13 +4,14 @@ import com.ankush.shortener.service.UrlService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+import org.springframework.beans.factory.annotation.Value;
 import java.net.URI;
 import java.time.LocalDateTime;
 
 @RestController
 public class UrlController {
-
+    @Value("${app.base-url:http://localhost:8080}")
+    private String baseUrl;
     private final UrlService urlService;
 
     public UrlController(UrlService urlService) {
@@ -29,7 +30,7 @@ public class UrlController {
             throw new RuntimeException("longUrl must start with http:// or https://");
         }
         String shortCode = urlService.shortenUrl(request.longUrl(), request.customCode(), request.customExpiry());
-        String shortUrl = "http://localhost:8080/" + shortCode;
+        String shortUrl = baseUrl + "/" + shortCode;
         return ResponseEntity.ok(shortUrl);
     }
 
